@@ -10,7 +10,7 @@ function preload(){
 	
 }
 
-var NORMAL_SPEED = 50;
+var NORMAL_SPEED = 5;
 
 var waves;
 var player;
