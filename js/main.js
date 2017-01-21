@@ -3,14 +3,15 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'Fish A Wave', { preload: prel
 
 function preload(){
 	
- game.load.image('sky', 'assets/sky1.png');
- game.load.image('redPirate', 'assets/pirate-red.png');
- game.load.image('purplePirate', 'assets/pirate-purple.png');
- game.load.image('waves', 'assets/waves.png');
- game.load.spritesheet('captain', 'assets/captain.png', 259, 185, 1);
- game.load.image('fish', 'assets/fish.png');
+	game.load.image('sky', 'assets/sky1.png');
+	game.load.image('redPirate', 'assets/pirate-red.png');
+	game.load.image('purplePirate', 'assets/pirate-purple.png');
+	game.load.image('waves', 'assets/waves.png');
+	game.load.spritesheet('captain', 'assets/captain.png', 259, 185, 1);
+	game.load.image('fish', 'assets/fish.png');
  
-	
+	//add sound
+	game.load.audio('music', 'assets/sound/Waves_Crashing_on_Rock_Beach.mp3'); 
 	
 }
 
@@ -26,10 +27,16 @@ var shark;
 var fishText;
 var NORMAL_SPEED = 5;
 
+//add sound
+var sound;
 
 function create() {
 	
-
+	//add sound
+	game.input.touch.preventDefault = false;
+	sound = game.add.audio('music');
+	sound.play();
+	game.input.onDown.add(restartMusic, this);
 	
 	//  We're going to be using physics, so enable the Arcade Physics system
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -100,10 +107,17 @@ function update() {
 	
 	
 }
+function restartMusic() {
+	
+	sound.restart();
+	
+}
 
 function render() {
 	
 	//game.debug.text("Time until event: " + game.time.events.duration.toFixed(0), 32, 32);
     //game.debug.text("Next tick: " + game.time.events.next.toFixed(0), 32, 64);
 	
+	//sound-related
+	game.debug.soundInfo(sound, 20, 32);
 }
