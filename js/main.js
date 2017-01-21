@@ -39,7 +39,7 @@ function create() {
 	//school = game.add.tileSprite(0, 0, 800, 600, 'clouds');
 	
 	 //  waves
-    waves = game.add.tileSprite(0, 0, 800, 300, 'waves');
+    waves = game.add.tileSprite(0, game.world.height - 200, 800, 300, 'waves');
 	
 	game.physics.arcade.enable(waves);
 	waves.body.immovable = true;
@@ -65,7 +65,7 @@ function create() {
     //  The score
     scoreText = game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
 	//The fish count
-	fishText = game.add.text(16, 50, 'Fish:  0', { fontSize: '32px', fill: '#000' });
+	fishText = game.add.text(16, 50, 'Fish:     0', { fontSize: '32px', fill: '#000' });
 
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
