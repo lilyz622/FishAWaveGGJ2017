@@ -47,7 +47,7 @@ function create() {
     platforms.enableBody = true;
 
     // Here we create the waves
-    waves = platforms.create(0, game.world.height - 200, 'waves');
+    waves = platforms.create(0, game.world.height - 100, 'waves');
 
     //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
     waves.scale.setTo(2, 2);
@@ -58,7 +58,7 @@ function create() {
    
 
     // The player and its settings
-    player = game.add.sprite(32, game.world.height - 400, 'captain');
+    player = game.add.sprite(32, game.world.height - 600, 'captain');
 
     //  We need to enable physics on the player
     game.physics.arcade.enable(player);
