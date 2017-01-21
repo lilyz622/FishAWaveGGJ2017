@@ -35,6 +35,7 @@ function create() {
 
     // Player
     player = game.add.sprite(100, 50, 'player');
+	player.scale.setTo(48,48);
 
 	console.log(player);
     //  We need to enable physics on the player
