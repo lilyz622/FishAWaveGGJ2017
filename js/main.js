@@ -148,7 +148,28 @@ function collectFish() {
 }
 
 function endGame() {
-	//todo
+	
+	game.paused = true;
+	var w = game.world.width;
+	var h = game.world.height;
+
+	// Then add the menu
+	
+	var endMessage = "GAME OVER";
+	var endText = game.add.text(game.world.centerX, game.world.centerY, endMessage,{fill: '#fff' });
+	endText.anchor.setTo(0.5,0.5);
+
+	// And a label to illustrate which menu item was chosen. (This is not necessary)
+	var choiseLabel = game.add.text(game.world.centerX, game.world.centerY + menu.height/2+30, 'Click here to restart', {fill: '#000000' });
+	choiseLabel.anchor.setTo(0.5, 0.5);
+
+	
+	// Add a input listener that can help us return from being paused
+    game.input.onDown.add(restart, self);
+	function restart(event){
+		location.reload();
+	}
+	
 }
 
 function render() {
