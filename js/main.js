@@ -54,25 +54,20 @@ function create() {
 
     // The player and its settings
     player = game.add.sprite(32, game.world.height - 600, 'captain');
+	player.scale.setTo(64,64);
 
     //  We need to enable physics on the player
     game.physics.arcade.enable(player);
 
     //  Player physics properties. No bounce for the ship.
       player.body.bounce.y = 0.1;
-      player.body.gravity.y = 400;
+      player.body.gravity.y = 200;
       player.body.collideWorldBounds = true;
-
-    //  Our two animations, sailing left and right.
-    player.animations.add('left', [1], 1, true);
-	player.animations.add('right', [1], 1, true);
-
-   
 
     //  The score
     scoreText = game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
 	//The fish count
-	fishText = game.add.text(16, 50, 'Fish:    0', { fontSize: '32px', fill: '#000' });
+	fishText = game.add.text(16, 40, 'Fish:   0', { fontSize: '32px', fill: '#000' });
 
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
