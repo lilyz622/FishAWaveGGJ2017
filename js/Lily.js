@@ -29,7 +29,6 @@ function create() {
 
     //  waves
     waves = game.add.tileSprite(0, game.world.centerY-50, 800, 300, 'waves');
-	waves.scale.y = 350;
 	console.log(waves);
 	game.physics.arcade.enable(waves);
 	waves.body.immovable = true;
