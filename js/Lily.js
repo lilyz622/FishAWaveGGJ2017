@@ -3,7 +3,7 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create
 
 function preload(){
 	
-    game.load.image('ocean', 'assets/waves.png')
+    game.load.image('waves', 'assets/waves.png')
 	game.load.image('player', 'assets/boat.png', 64,96,16)
 	
 	
@@ -38,8 +38,8 @@ function create() {
     //game.add.sprite(0, 0, 'sky');
 
     //  ocean 
-    ocean = game.add.tileSprite(0, game.world.centerY, 800, 300, 'ocean');
-	ocean.body.immovable = true;
+    waves = game.add.tileSprite(0, game.world.centerY, 800, 300, 'ocean');
+	waves.body.immovable = true;
 
     // //  The platforms group contains the ground and waves we are sailing on
     // platforms = game.add.group();
