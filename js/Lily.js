@@ -13,68 +13,28 @@ var NORMAL_SPEED = 150;
 
 var waves;
 var player;
-var cursors;
-var fish;
 var score;
 var scoreText;
-var sound;
-var pirateShip;
-var shark;
-var fishText;
+
 
 
 function create() {
 	
-    ////add sound
-    //game.input.touch.preventDefault = false;
-    //sound = game.add.audio('music');
-    //sound.play();
-    //game.input.onDown.add(restartMusic, this);
-	
     //  We're going to be using physics, so enable the Arcade Physics system
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    ////  sky for our game
-    //game.add.sprite(0, 0, 'sky');
+    //  sky for our game
+    game.add.sprite(0, 0, 'sky');
 
     //  ocean 
-    waves = game.add.tileSprite(0, game.world.centerY, 800, 300, 'ocean');
+    waves = game.add.tileSprite(0, game.world.centerY-50, 800, 300, 'ocean');
 	waves.body.immovable = true;
 
-    // //  The platforms group contains the ground and waves we are sailing on
-    // platforms = game.add.group();
-
-    // //  We will enable physics for any object that is created in this group
-    // platforms.enableBody = true;
-
-    // // Here we create the ground.
-    // var ground = platforms.create(0, game.world.height - 64, 'ground');
-
-    // //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-    // ground.scale.setTo(2, 2);
-
-    // //  This stops it from falling away when you jump on it
-    // ground.body.immovable = true;
-
-    //  The wave form
-    //***Playing with beizer curves
-
     // The player and its settings
-    player = game.add.sprite(0, 0, 'player');
+    player = game.add.sprite(100, game.world.height - 150, 'player');
 
     //  We need to enable physics on the player
     game.physics.arcade.enable(player);
-
-    //  Player physics properties. No bounce for the ship.
-    player.body.bounce.y = 0;
-    player.body.gravity.y = 400;
-    player.body.collideWorldBounds = true;
-
-    //  Our two animations, sailing left and right.
-    player.animations.add('left', [0, 1, 2, 3], 16, true);
-    player.animations.add('right', [4, 5, 6, 7], 16, true);
-
-   
 
     //  The score
     scoreText = game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
@@ -99,31 +59,6 @@ function update() {
 	//  Reset the players velocity (movement)
     player.body.velocity.x = 0;
 	ocean.tilePosition.x += NORMAL_SPEED
-
-    // if (cursors.left.isDown)
-    // {
-        // //  Move to the left
-        // player.body.velocity.x = ;
-
-        // player.animations.play('left');
-		// ocean.tilePosition.x+= NORMAL_SPEED;
-    // }
-    // else if (cursors.right.isDown)
-    // {
-        // //  Move to the right
-        // player.body.velocity.x = 150;
-
-        // player.animations.play('right');
-		// ocean.tilePosition.x-= NORMAL_SPEED;
-    // }
-    // else
-    // {
-        // //  Stand still
-        // player.animations.stop();
-
-        // player.frame = 4;
-    // }
-
 
 
 }
