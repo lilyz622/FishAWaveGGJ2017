@@ -128,7 +128,7 @@ function createFish()
 	
 	fish = game.add.sprite(900, 500, 'fish');
 	game.physics.arcade.enable(fish);
-	fish.body.gravity.x = 300;
+	fish.body.velocity.x = -300;
 	
 }
 
