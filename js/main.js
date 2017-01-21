@@ -4,8 +4,8 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'Fish A Wave', { preload: prel
 function preload(){
 	
 	game.load.image('sky', 'assets/sky.png');
-	game.load.image('redPirate', 'assets/pirate-red.png');
-	game.load.image('purplePirate', 'assets/pirate-purple.png');
+	game.load.image('pirate', 'assets/pirate-red.png');
+	//game.load.image('purplePirate', 'assets/pirate-purple.png');
 	game.load.image('waves', 'assets/waves.png');
 	game.load.spritesheet('captain', 'assets/captain.png', 259, 185, 1);
 	game.load.image('fish', 'assets/fish.png');
@@ -24,7 +24,7 @@ var fish;
 var score;
 var scoreText;
 var sound;
-var pirateShip;
+var pirate;
 var shark;
 var fishText;
 var NORMAL_SPEED = 5;
@@ -75,6 +75,7 @@ function create() {
     cursors = game.input.keyboard.createCursorKeys();
 	
 	game.time.events.add(Phaser.Timer.SECOND * 2, createFish, this);
+	game.time.events.add(Phaser.Timer.SECOND * 5, createPirate, this);
 	
 	
 	//  The first parameter is how long to wait before the event fires. In this case 5 seconds (you could pass in 2000 as the value as well.)
@@ -107,6 +108,7 @@ function update() {
 
 	game.physics.arcade.overlap(player, fish, collectFish, null, this);
 	game.physics.arcade.overlap(player, shark, endGame, null, this);
+	game.physics.arcade.overlap(player, pirate, endGame, null, this);
 	
 	
 	
@@ -130,6 +132,14 @@ function createFish()
 	game.physics.arcade.enable(fish);
 	fish.body.velocity.x = -150;
 	
+}
+
+function createPirate()
+{
+	pirate = game.add.sprite(900, 0, 'pirate');
+	game.physics.arcade.enable(pirate);
+	pirate.body.velocity.x = -150;
+	game.physics.arcade.collide(pirate, waves);
 }
 
 function collectFish() {
