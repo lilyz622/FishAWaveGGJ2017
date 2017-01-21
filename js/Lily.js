@@ -6,14 +6,16 @@ function preload(){
     game.load.image('waves', 'assets/waves.png')
 	game.load.image('player', 'assets/captain.png')
 	game.load.image('sky', 'assets/sky1.png');
+	// game.load.image('hook', 'assets/hook.png');
 	
 	
 }
 
-var NORMAL_SPEED = 5;
-
+var NORMAL_SPEED = -5;
 var waves;
 var player;
+var hook;
+var fishline;
 var score;
 var scoreText;
 
@@ -35,7 +37,6 @@ function create() {
 
     // Player
     player = game.add.sprite(100, 50, 'player');
-	player.scale.setTo(64,64);
 
 	console.log(player);
     //  We need to enable physics on the player
@@ -43,6 +44,14 @@ function create() {
 	player.body.bounce.y = 0.2;
     player.body.gravity.y = 200;
     player.body.collideWorldBounds = true;
+	
+	// hook 
+	hook = game.add.sprite(player.x,player.y+player.height+80,'hook');
+	game.physics.arcade.enable(hook);
+	hook.body.collideWorldBounds = true;
+	
+	// line
+	fishline = new Phaser.Line(player.x, player.y, player.x, hook.y);
 
     //  The score
     scoreText = game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
@@ -66,12 +75,19 @@ function create() {
 function update() {
 	//  Reset the players velocity (movement)
     player.body.velocity.x = 0;
-	waves.tilePosition.x += NORMAL_SPEED
+	waves.tilePosition.x += NORMAL_SPEED;
+	fishline.fromSprite(player,hook);
 	
-	// Collide 
+	
+	// Collisions
 	game.physics.arcade.collide(player, waves);
+	
 
 
+}
+
+function updateHook() {
+	
 }
 
 function render() {
