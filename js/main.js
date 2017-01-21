@@ -61,7 +61,7 @@ function create() {
 
     //  Player physics properties. No bounce for the ship.
       player.body.bounce.y = 0.1;
-      player.body.gravity.y = 400;
+      player.body.gravity.y = 600;
       player.body.collideWorldBounds = true;
 
     //  The score
@@ -98,7 +98,7 @@ function update() {
 	
 	if (cursors.up.isDown && player.body.touching.down)
 	{
-		player.body.velocity.y = -350;
+		player.body.velocity.y = -250;
 	}
 
 	
