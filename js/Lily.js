@@ -9,6 +9,8 @@ function preload(){
 	
 }
 
+var NORMAL_SPEED = 150;
+
 var waves;
 var player;
 var cursors;
@@ -36,7 +38,7 @@ function create() {
     //game.add.sprite(0, 0, 'sky');
 
     //  ocean 
-    ocean = game.add.tileSprite(0, game.world.centerY, 800, 600, 'ocean');
+    ocean = game.add.tileSprite(0, game.world.centerY, 800, 300, 'ocean');
 	ocean.body.immovable = true;
 
     // //  The platforms group contains the ground and waves we are sailing on
@@ -58,7 +60,7 @@ function create() {
     //***Playing with beizer curves
 
     // The player and its settings
-    player = game.add.sprite(32, game.world.height - 150, 'captain');
+    player = game.add.sprite(0, 0, 'player');
 
     //  We need to enable physics on the player
     game.physics.arcade.enable(player);
@@ -69,8 +71,8 @@ function create() {
     player.body.collideWorldBounds = true;
 
     //  Our two animations, sailing left and right.
-    player.animations.add('left', [1, 5, 9, 13], 16, true);
-    player.animations.add('right', [3, 7, 11, 15], 16, true);
+    player.animations.add('left', [0, 1, 2, 3], 16, true);
+    player.animations.add('right', [4, 5, 6, 7], 16, true);
 
    
 
@@ -94,7 +96,33 @@ function create() {
 
 
 function update() {
+	//  Reset the players velocity (movement)
+    player.body.velocity.x = 0;
+	ocean.tilePosition.x += NORMAL_SPEED
 
+    // if (cursors.left.isDown)
+    // {
+        // //  Move to the left
+        // player.body.velocity.x = ;
+
+        // player.animations.play('left');
+		// ocean.tilePosition.x+= NORMAL_SPEED;
+    // }
+    // else if (cursors.right.isDown)
+    // {
+        // //  Move to the right
+        // player.body.velocity.x = 150;
+
+        // player.animations.play('right');
+		// ocean.tilePosition.x-= NORMAL_SPEED;
+    // }
+    // else
+    // {
+        // //  Stand still
+        // player.animations.stop();
+
+        // player.frame = 4;
+    // }
 
 
 
