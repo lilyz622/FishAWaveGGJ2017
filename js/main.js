@@ -61,12 +61,12 @@ function create() {
     player = game.add.sprite(32, game.world.height - 150, 'captain');
 
     //  We need to enable physics on the player
-   // game.physics.arcade.enable(player);
+    game.physics.arcade.enable(player);
 
     //  Player physics properties. No bounce for the ship.
-   // player.body.bounce.y = 0;
-  //  player.body.gravity.y = 400;
-  //  player.body.collideWorldBounds = true;
+      player.body.bounce.y = 0;
+      player.body.gravity.y = 400;
+      player.body.collideWorldBounds = true;
 
     //  Our two animations, sailing left and right.
   //  player.animations.add('left', [1, 5, 9, 13], 16, true);
