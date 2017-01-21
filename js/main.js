@@ -24,6 +24,7 @@ var sound;
 var pirateShip;
 var shark;
 var fishText;
+var NORMAL_SPEED = 5;
 
 
 function create() {
