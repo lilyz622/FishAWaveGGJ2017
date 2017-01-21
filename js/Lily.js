@@ -13,6 +13,7 @@ function preload(){
 
 var NORMAL_SPEED = -5;
 var waves;
+var sky;
 var player;
 var hook;
 var fishline;
@@ -27,7 +28,7 @@ function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
     //  sky
-    game.add.sprite(0, 0, 'sky');
+    sky = game.add.tileSprite(0, 0, 800, 600,'sky');
 
     //  waves
     waves = game.add.tileSprite(0, game.world.centerY-50, 800, 300, 'waves');
@@ -47,7 +48,6 @@ function create() {
 	
 	// hook 
 	hook = game.add.sprite(player.x,player.y+player.height+80,'hook');
-	game.physics.arcade.enable(hook);
 	hook.body.collideWorldBounds = true;
 	
 	// line
@@ -76,8 +76,9 @@ function update() {
 	//  Reset the players velocity (movement)
     player.body.velocity.x = 0;
 	waves.tilePosition.x += NORMAL_SPEED;
+	sky.tilePosition.x+= NORMAL_SPEED;
 	fishline.fromSprite(player,hook);
-	
+	updateHook();
 	
 	// Collisions
 	game.physics.arcade.collide(player, waves);
@@ -87,7 +88,13 @@ function update() {
 }
 
 function updateHook() {
-	
+	if (cursors.down.isDown) {
+		hook.velocity.y += 150;
+	} else if (cursors.up.isDown) {
+		if (! hook.y < player.y+player.height){
+			hook.velocity.y -= 150;
+		}
+	}
 }
 
 function render() {
