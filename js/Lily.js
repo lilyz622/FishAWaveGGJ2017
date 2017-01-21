@@ -64,7 +64,7 @@ function create() {
 function update() {
 	//  Reset the players velocity (movement)
     player.body.velocity.x = 0;
-	ocean.tilePosition.x += NORMAL_SPEED
+	waves.tilePosition.x += NORMAL_SPEED
 
 
 }
