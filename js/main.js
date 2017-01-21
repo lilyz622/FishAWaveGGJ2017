@@ -72,7 +72,7 @@ function create() {
     //  The score
     scoreText = game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
 	//The fish count
-	fishText = game.add.text(16, 50, 'Fish:     0', { fontSize: '32px', fill: '#000' });
+	fishText = game.add.text(16, 50, 'Fish:    0', { fontSize: '32px', fill: '#000' });
 
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
