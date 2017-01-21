@@ -4,7 +4,7 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create
 function preload(){
 	
     game.load.image('waves', 'assets/waves.png')
-	game.load.image('player', 'assets/boat.png', 64,96,16)
+	game.load.image('player', 'assets/fish.png')
 	
 	
 }
@@ -28,13 +28,19 @@ function create() {
 
     //  ocean 
     waves = game.add.tileSprite(0, game.world.centerY-50, 800, 300, 'ocean');
+	console.log(waves);
+	game.physics.arcade.enable(waves);
 	waves.body.immovable = true;
 
     // The player and its settings
     player = game.add.sprite(100, game.world.height - 150, 'player');
+	console.log(player);
 
     //  We need to enable physics on the player
     game.physics.arcade.enable(player);
+	player.body.bounce.y = 0.2;
+    player.body.gravity.y = 400;
+    player.body.collideWorldBounds = true;
 
     //  The score
     scoreText = game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
