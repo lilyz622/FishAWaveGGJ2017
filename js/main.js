@@ -4,6 +4,8 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'Fish A Wave', { preload: prel
 function preload(){
 	
  game.load.image('sky', 'assets/sky1.png');
+ game.load.image('redPirate', 'assets/pirate-red.png');
+ game.load.image('purplePirate', 'assets/pirate-purple.png');
 	
 	
 }
