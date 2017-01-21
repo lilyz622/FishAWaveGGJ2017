@@ -10,6 +10,7 @@ function preload(){
 	game.load.spritesheet('captain', 'assets/captain.png', 259, 185, 1);
 	game.load.image('fish', 'assets/fish.png');
 	game.load.image('shark', 'assets/shark.png');
+	game.load.image('menu', 'assets/blackbox.png', 360, 200);
  
  
 	//add sound
@@ -154,6 +155,8 @@ function endGame() {
 	var h = game.world.height;
 
 	// Then add the menu
+	var menu = game.add.sprite(w/2, h/2, 'menu');
+	menu.anchor.setTo(0.5, 0.5);
 	
 	var endMessage = "GAME OVER";
 	var endText = game.add.text(game.world.centerX, game.world.centerY, endMessage,{fill: '#fff' });
