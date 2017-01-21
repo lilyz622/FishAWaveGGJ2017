@@ -74,7 +74,7 @@ function create() {
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
 	
-	game.time.events.add(Phaser.Timer.SECOND * 5, createFish, this);
+	game.time.events.add(Phaser.Timer.SECOND * 2, createFish, this);
 	
 	
 	//  The first parameter is how long to wait before the event fires. In this case 5 seconds (you could pass in 2000 as the value as well.)
@@ -128,7 +128,7 @@ function createFish()
 	
 	fish = game.add.sprite(900, 500, 'fish');
 	game.physics.arcade.enable(fish);
-	fish.body.velocity.x = -300;
+	fish.body.velocity.x = -150;
 	
 }
 
