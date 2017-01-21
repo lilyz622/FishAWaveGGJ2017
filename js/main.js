@@ -45,7 +45,7 @@ function create() {
     platforms.enableBody = true;
 
     // Here we create the waves
-    waves = platforms.create(0, game.world.height - 64, 'waves');
+    waves = platforms.create(0, game.world.height - 200, 'waves');
 
     //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
     waves.scale.setTo(2, 2);
