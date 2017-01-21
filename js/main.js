@@ -107,7 +107,7 @@ function update() {
         player.body.velocity.x = -150;
 
         player.animations.play('left');
-		school.tilePosition.x+= 5;
+		
     }
     else if (cursors.right.isDown)
     {
@@ -115,14 +115,14 @@ function update() {
         player.body.velocity.x = 150;
 
         player.animations.play('right');
-		school.tilePosition.x-=5;
+	
     }
     else
     {
         //  Stand still
         player.animations.stop();
 
-        player.frame = 4;
+        player.frame = 1;
     }
     
     //  Allow the player to jump if they are touching the ground.
