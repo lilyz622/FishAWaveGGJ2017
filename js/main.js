@@ -6,6 +6,7 @@ function preload(){
  game.load.image('sky', 'assets/sky1.png');
  game.load.image('redPirate', 'assets/pirate-red.png');
  game.load.image('purplePirate', 'assets/pirate-purple.png');
+ game.load.image('waves', 'assets/waves.png');
 	
 	
 }
@@ -43,17 +44,16 @@ function create() {
     //  We will enable physics for any object that is created in this group
     platforms.enableBody = true;
 
-    // Here we create the ground. - NO need
-   // var ground = platforms.create(0, game.world.height - 64, 'ground');
+    // Here we create the waves
+    waves = platforms.create(0, game.world.height - 64, 'waves');
 
     //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-    //ground.scale.setTo(2, 2);
+    waves.scale.setTo(2, 2);
 
     //  This stops it from falling away when you jump on it
-   // ground.body.immovable = true;
+   waves.body.immovable = true;
 
-    //  The wave form
-    //***Playing with beizer curves
+   
 
     // The player and its settings
   //  player = game.add.sprite(32, game.world.height - 150, 'captain');
