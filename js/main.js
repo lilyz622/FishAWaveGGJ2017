@@ -3,7 +3,7 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'Fish A Wave', { preload: prel
 
 function preload(){
 	
-	game.load.image('sky', 'assets/sky1.png');
+	game.load.image('sky', 'assets/sky.png');
 	game.load.image('redPirate', 'assets/pirate-red.png');
 	game.load.image('purplePirate', 'assets/pirate-purple.png');
 	game.load.image('waves', 'assets/waves.png');
@@ -85,7 +85,8 @@ function create() {
 
 function update() {
 	
-	
+		// Collide 
+	game.physics.arcade.collide(player, waves);
 	
 	//Check if player overlaps with fishes
 	//game.physics.arcade.overlap(player, fish, collectFish, null, this);
@@ -95,8 +96,10 @@ function update() {
 
 	waves.tilePosition.x += NORMAL_SPEED;
 	
-	// Collide 
-	game.physics.arcade.collide(player, waves);
+	if (cursors.up.isDown && player.body.touching.down)
+	{
+		player.body.velocity.y = -250;
+	}
 
 	
 	
