@@ -5,11 +5,12 @@ function preload(){
 	
     game.load.image('waves', 'assets/waves.png')
 	game.load.image('player', 'assets/fish.png')
+	game.load.image('sky', 'assets/sky1.png');
 	
 	
 }
 
-var NORMAL_SPEED = 150;
+var NORMAL_SPEED = 50;
 
 var waves;
 var player;
@@ -23,17 +24,17 @@ function create() {
     //  We're going to be using physics, so enable the Arcade Physics system
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    //  sky for our game
+    //  sky
     game.add.sprite(0, 0, 'sky');
 
-    //  ocean 
+    //  waves
     waves = game.add.tileSprite(0, game.world.centerY-50, 800, 300, 'waves');
 	console.log(waves);
 	game.physics.arcade.enable(waves);
 	waves.body.immovable = true;
 
-    // The player and its settings
-    player = game.add.sprite(100, game.world.height - 150, 'player');
+    // Player
+    player = game.add.sprite(100, 50, 'player');
 	console.log(player);
 
     //  We need to enable physics on the player
@@ -65,6 +66,9 @@ function update() {
 	//  Reset the players velocity (movement)
     player.body.velocity.x = 0;
 	waves.tilePosition.x += NORMAL_SPEED
+	
+	// Collide 
+	game.physics.arcade.collide(player, waves);
 
 
 }
