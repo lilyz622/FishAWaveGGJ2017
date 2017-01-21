@@ -29,13 +29,15 @@ function create() {
 
     //  waves
     waves = game.add.tileSprite(0, game.world.centerY-50, 800, 350, 'waves');
+	waves.scale.y = 350;
 	console.log(waves);
 	game.physics.arcade.enable(waves);
 	waves.body.immovable = true;
 
     // Player
     player = game.add.sprite(100, 50, 'player');
-	player.scale.setTo(48,48);
+	player.scale.x=48;
+	player.scale.y=48;
 	console.log(player);
     //  We need to enable physics on the player
     game.physics.arcade.enable(player);
