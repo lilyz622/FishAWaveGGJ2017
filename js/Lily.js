@@ -27,7 +27,7 @@ function create() {
     game.add.sprite(0, 0, 'sky');
 
     //  ocean 
-    waves = game.add.tileSprite(0, game.world.centerY-50, 800, 300, 'ocean');
+    waves = game.add.tileSprite(0, game.world.centerY-50, 800, 300, 'waves');
 	console.log(waves);
 	game.physics.arcade.enable(waves);
 	waves.body.immovable = true;
