@@ -54,7 +54,7 @@ function create() {
 
     // The player and its settings
     player = game.add.sprite(32, game.world.height - 600, 'captain');
-	player.scale.setTo(64,64);
+	//player.scale.setTo(64,64);
 
     //  We need to enable physics on the player
     game.physics.arcade.enable(player);
