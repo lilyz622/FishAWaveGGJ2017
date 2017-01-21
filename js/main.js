@@ -7,6 +7,8 @@ function preload(){
  game.load.image('redPirate', 'assets/pirate-red.png');
  game.load.image('purplePirate', 'assets/pirate-purple.png');
  game.load.image('waves', 'assets/waves.png');
+ game.load.image('captain', 'assets/captain.png');
+ 
 	
 	
 }
@@ -56,7 +58,7 @@ function create() {
    
 
     // The player and its settings
-  //  player = game.add.sprite(32, game.world.height - 150, 'captain');
+    player = game.add.sprite(32, game.world.height - 150, 'captain');
 
     //  We need to enable physics on the player
    // game.physics.arcade.enable(player);
