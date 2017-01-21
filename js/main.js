@@ -9,6 +9,8 @@ function preload(){
 	game.load.image('waves', 'assets/waves.png');
 	game.load.spritesheet('captain', 'assets/captain.png', 259, 185, 1);
 	game.load.image('fish', 'assets/fish.png');
+	game.load.image('shark', 'assets/shark.png');
+ 
  
 	//add sound
 	game.load.audio('music', 'assets/sound/Waves_Crashing_on_Rock_Beach.mp3'); 
@@ -72,6 +74,8 @@ function create() {
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
 	
+	game.time.events.add(Phaser.Timer.SECOND * 5, createFish, this);
+	
 	
 	//  The first parameter is how long to wait before the event fires. In this case 5 seconds (you could pass in 2000 as the value as well.)
     //  The second parameter is how many times the event will run in total. Here we'll run it 2 times.
@@ -98,17 +102,43 @@ function update() {
 	
 	if (cursors.up.isDown && player.body.touching.down)
 	{
-		player.body.velocity.y = -250;
+		player.body.velocity.y = -300;
 	}
 
+	game.physics.arcade.overlap(player, fish, collectFish, null, this);
+	game.physics.arcade.overlap(player, shark, endGame, null, this);
 	
-	
+	fish.body.velocity.x = -150;
 	
 }
 function restartMusic() {
 	
 	sound.restart();
 	
+}
+
+function createFish()
+{
+	try {
+		fish.kill();
+	} catch (err){
+		
+	}
+	
+	
+	fish = game.add.sprite(900, 500, 'fish');
+	game.physics.arcade.enable(fish);
+	
+	
+}
+
+function collectFish() {
+	
+	//todo
+}
+
+function endGame() {
+	//todo
 }
 
 function render() {
