@@ -35,13 +35,13 @@ function create() {
 
     // Player
     player = game.add.sprite(100, 50, 'player');
-	player.scale.setTo(48,48);
+	player.scale.setTo(64,64);
 
 	console.log(player);
     //  We need to enable physics on the player
     game.physics.arcade.enable(player);
 	player.body.bounce.y = 0.2;
-    player.body.gravity.y = 400;
+    player.body.gravity.y = 200;
     player.body.collideWorldBounds = true;
 
     //  The score
