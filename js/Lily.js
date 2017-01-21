@@ -4,7 +4,7 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create
 function preload(){
 	
     game.load.image('ocean', 'assets/waves.png')
-	game.load.image('player', 'assets/player.png', 64,96,16)
+	game.load.image('player', 'assets/boat.png', 64,96,16)
 	
 	
 }
