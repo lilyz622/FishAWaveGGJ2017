@@ -95,6 +95,9 @@ function create() {
 
 function update() {
 	
+	//  Collide the player and the homework with the platforms
+    game.physics.arcade.collide(player, platforms);
+	
 	
 	
 	
