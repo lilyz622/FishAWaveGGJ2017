@@ -7,7 +7,7 @@ function preload(){
  game.load.image('redPirate', 'assets/pirate-red.png');
  game.load.image('purplePirate', 'assets/pirate-purple.png');
  game.load.image('waves', 'assets/waves.png');
- game.load.image('captain', 'assets/captain.png');
+ game.load.spritesheet('captain', 'assets/captain.png', 259, 185, 1);
  
 	
 	
@@ -64,23 +64,23 @@ function create() {
     game.physics.arcade.enable(player);
 
     //  Player physics properties. No bounce for the ship.
-      player.body.bounce.y = 0;
+      player.body.bounce.y = 0.1;
       player.body.gravity.y = 400;
       player.body.collideWorldBounds = true;
 
     //  Our two animations, sailing left and right.
-  //  player.animations.add('left', [1, 5, 9, 13], 16, true);
-	//player.animations.add('right', [3, 7, 11, 15], 16, true);
+    player.animations.add('left', [1], 1, true);
+	player.animations.add('right', [1], 1, true);
 
    
 
     //  The score
-    //scoreText = game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
+    scoreText = game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
 	//The fish count
-	//fishText = game.add.text(16, 32, 'Fish: 0', { fontSize: '32px', fill: '#000' });
+	fishText = game.add.text(16, 32, 'Fish: 0', { fontSize: '32px', fill: '#000' });
 
     //  Our controls.
-    //cursors = game.input.keyboard.createCursorKeys();
+    cursors = game.input.keyboard.createCursorKeys();
 	
 	
 	//  The first parameter is how long to wait before the event fires. In this case 5 seconds (you could pass in 2000 as the value as well.)
@@ -98,6 +98,8 @@ function update() {
 	//  Collide the player and the homework with the platforms
     game.physics.arcade.collide(player, platforms);
 	
+	//  Reset the players velocity (movement)
+    player.body.velocity.x = 0;
 	
 	
 	
