@@ -3,7 +3,7 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'Fish A Wave', { preload: prel
 
 function preload(){
 	
-
+ game.load.image('sky', 'assets/sky.png');
 	
 	
 }
@@ -29,19 +29,19 @@ function create() {
 	//game.input.onDown.add(restartMusic, this);
 	
 	//  We're going to be using physics, so enable the Arcade Physics system
-    //game.physics.startSystem(Phaser.Physics.ARCADE);
+    game.physics.startSystem(Phaser.Physics.ARCADE);
 
     //  A simple background for our game
-   // game.add.sprite(0, 0, 'sky');
+    game.add.sprite(0, 0, 'sky');
 	//school = game.add.tileSprite(0, 0, 800, 600, 'clouds');
 
-    //  The platforms group contains the ground and waves we are sailing on
-    //platforms = game.add.group();
+    //  The platforms group contains the waves we are sailing on
+    platforms = game.add.group();
 
     //  We will enable physics for any object that is created in this group
-   // platforms.enableBody = true;
+    platforms.enableBody = true;
 
-    // Here we create the ground.
+    // Here we create the ground. - NO need
    // var ground = platforms.create(0, game.world.height - 64, 'ground');
 
     //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
