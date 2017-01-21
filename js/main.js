@@ -108,7 +108,7 @@ function update() {
 	game.physics.arcade.overlap(player, fish, collectFish, null, this);
 	game.physics.arcade.overlap(player, shark, endGame, null, this);
 	
-	fish.body.velocity.x = -150;
+	
 	
 }
 function restartMusic() {
@@ -128,7 +128,7 @@ function createFish()
 	
 	fish = game.add.sprite(900, 500, 'fish');
 	game.physics.arcade.enable(fish);
-	
+	fish.body.gravity.x = 300;
 	
 }
 
