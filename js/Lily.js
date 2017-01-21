@@ -48,10 +48,12 @@ function create() {
 	
 	// hook 
 	hook = game.add.sprite(player.x,player.y+player.height+80,'hook');
+	game.physics.arcade.enable(hook);
+	hook.body.gravity.y = 10;
 	hook.body.collideWorldBounds = true;
 	
 	// line
-	fishline = new Phaser.Line(player.x, player.y, player.x, hook.y);
+	fishline = new Phaser.Line(player.x, player.y, hook.x, hook.y);
 
     //  The score
     scoreText = game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
@@ -81,7 +83,7 @@ function update() {
 	updateHook();
 	
 	// Collisions
-	game.physics.arcade.collide(player, waves);
+	game.physics.arcade.collide(player, waves, false);
 	
 
 
