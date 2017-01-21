@@ -28,11 +28,7 @@ var fishText;
 
 function create() {
 	
-	  //add sound
-	//game.input.touch.preventDefault = false;
-	//sound = game.add.audio('music');
-	//sound.play();
-	//game.input.onDown.add(restartMusic, this);
+
 	
 	//  We're going to be using physics, so enable the Arcade Physics system
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -40,22 +36,12 @@ function create() {
     //  A simple background for our game
     game.add.sprite(0, 0, 'sky');
 	//school = game.add.tileSprite(0, 0, 800, 600, 'clouds');
-
-    //  The platforms group contains the waves we are sailing on
-    platforms = game.add.group();
-
-    //  We will enable physics for any object that is created in this group
-    platforms.enableBody = true;
-
-    // Here we create the waves
-    waves = platforms.create(0, game.world.height - 200, 'waves');
-
-    //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-    waves.scale.setTo(2, 2);
-
-    //  This stops it from falling away when you jump on it
-   waves.body.immovable = true;
-
+	
+	 //  waves
+    waves = game.add.tileSprite(0, game.world.centerY-50, 800, 300, 'waves');
+	console.log(waves);
+	game.physics.arcade.enable(waves);
+	waves.body.immovable = true;
    
 
     // The player and its settings
@@ -96,8 +82,7 @@ function create() {
 
 function update() {
 	
-	//  Collide the player with the platforms
-    game.physics.arcade.collide(player, platforms);
+	
 	
 	//Check if player overlaps with fishes
 	//game.physics.arcade.overlap(player, fish, collectFish, null, this);
@@ -105,6 +90,10 @@ function update() {
 	//  Reset the players velocity (movement)
     player.body.velocity.x = 0;
 
+	waves.tilePosition.x += NORMAL_SPEED;
+	
+	// Collide 
+	game.physics.arcade.collide(player, waves);
 
 	
 	
