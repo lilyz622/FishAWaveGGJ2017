@@ -8,6 +8,7 @@ function preload(){
  game.load.image('purplePirate', 'assets/pirate-purple.png');
  game.load.image('waves', 'assets/waves.png');
  game.load.spritesheet('captain', 'assets/captain.png', 259, 185, 1);
+ game.load.image('fish', 'assets/fish.png');
  
 	
 	
@@ -47,7 +48,7 @@ function create() {
     platforms.enableBody = true;
 
     // Here we create the waves
-    waves = platforms.create(0, game.world.height - 100, 'waves');
+    waves = platforms.create(0, game.world.height - 200, 'waves');
 
     //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
     waves.scale.setTo(2, 2);
@@ -95,11 +96,28 @@ function create() {
 
 function update() {
 	
-	//  Collide the player and the homework with the platforms
+	//  Collide the player with the platforms
     game.physics.arcade.collide(player, platforms);
+	
+	//Check if player overlaps with fishes
+	//game.physics.arcade.overlap(player, fish, collectFish, null, this);
 	
 	//  Reset the players velocity (movement)
     player.body.velocity.x = 0;
+	
+	if (cursors.left.isDown)
+	{
+		player.body.velocity.x = -150;
+	}
+	else if (cursors.right.isDown)
+	{
+		player.body.velocity.x = 150;
+	}
+	
+	if (cursors.up.isDown && player.body.touching.down)
+	{
+		player.body.velocity.y = -350;
+	}
 	
 
 	
