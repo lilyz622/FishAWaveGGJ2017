@@ -13,6 +13,11 @@ function preload(){
 	game.load.image('menu', 'assets/blackbox.png', 300, 180);
 	game.load.image('pirate', 'assets/pirate-red.png');
 	
+	// add sound
+	//add sound
+	game.load.audio('water', 'assets/audio/3m51s-water.mp3'); 
+	game.load.audio('dramatic', 'assets/audio/18s-dramatic.mp3');
+	
 	
 }
 
@@ -37,9 +42,18 @@ var shark;
 var ammoFish;
 var fishCount = 1;
 
+//add sound
+var waterSound;
+var dramaticSound;
 
 
 function create() {
+	
+	waterSound = game.add.audio('water');
+	dramaticSound = game.add.audio('dramatic');
+	waterSound.play();
+	waterSound.onStop.add(playbackDramatic);
+	
 	
     //  We're going to be using physics, so enable the Arcade Physics system
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -115,7 +129,7 @@ function update() {
 	game.physics.arcade.overlap(player, pirate, endGame, null, this);
 	
 	// ammoFish
-	if (cursors.spaceBar.isDown && fishCount > 0) {
+	if (cursors.right.isDown && fishCount > 0) {
 		shootFish();
 	}
 	game.physics.arcade.overlap(ammoFish, pirate, killPirate, null, this);
@@ -170,6 +184,7 @@ function createFish()
 
 function createPirate()
 {
+	waterSound.stop();
 	pirate = game.add.sprite(900, 100, 'pirate');
 	game.physics.arcade.enable(pirate);
 	pirate.body.velocity.x = -200;
@@ -212,4 +227,8 @@ function endGame() {
 		location.reload();
 	}
 	
+}
+
+function playbackDramatic() {
+	dramaticSound.loopFull();
 }
