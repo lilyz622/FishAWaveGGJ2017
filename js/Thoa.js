@@ -175,8 +175,6 @@ function hasLooped(sound) {
         current.loopFull();
     } */
 
-} */
-
 
 function createFish()
 {
