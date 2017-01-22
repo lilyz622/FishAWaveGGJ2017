@@ -100,7 +100,7 @@ function create() {
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
 
-	game.time.events.repeat(Phaser.Timer.SECOND * 2, 20, createFish, this);
+	game.time.events.repeat(Phaser.Timer.SECOND * 5, 20, createFish, this);
 	game.time.events.repeat(Phaser.Timer.SECOND * 5, 20, createPirate, this);
 	game.time.events.repeat(Phaser.Timer.SECOND * 7, 20, createShark, this);
 	
