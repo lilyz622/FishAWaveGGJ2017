@@ -30,7 +30,7 @@ var sky;
 var player;
 var hook;
 var fishline;
-var score;
+var score = 0;
 var scoreText;
 
 // added
