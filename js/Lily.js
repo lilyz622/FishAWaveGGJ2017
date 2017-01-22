@@ -6,7 +6,7 @@ function preload(){
     game.load.image('waves', 'assets/waves.png')
 	game.load.image('player', 'assets/captain.png')
 	game.load.image('sky', 'assets/sky1.png');
-	// game.load.image('hook', 'assets/hook.png');
+	game.load.image('hook', 'assets/hook.png');
 	
 	
 }
@@ -92,10 +92,10 @@ function update() {
 function updateHook() {
 	hook.body.velocity.y = 0;
 	if (cursors.down.isDown) {
-		hook.body.velocity.y += 150;
+		hook.y += 100;
 	} else if (cursors.up.isDown) {
-		if (! hook.y < player.y+player.height){
-			hook.body.velocity.y -= 150;
+		if (! (hook.y < player.y+player.height)){
+			hook.y -= 100;
 		}
 	}
 }
