@@ -15,10 +15,10 @@ function preload(){
  
  
 	//add sound
-	game.load.audio('music', 'assets/sound/Waves_Crashing_on_Rock_Beach.mp3'); 
+	//game.load.audio('music', 'assets/sound/Waves_Crashing_on_Rock_Beach.mp3'); 
 	
 }
-
+var hook;
 var waves;
 var player;
 var cursors;
@@ -40,10 +40,10 @@ var sound;
 function create() {
 	
 	//add sound
-	game.input.touch.preventDefault = false;
-	sound = game.add.audio('music');
-	sound.play();
-	game.input.onDown.add(restartMusic, this);
+	//game.input.touch.preventDefault = false;
+	//sound = game.add.audio('music');
+	//sound.play();
+	//game.input.onDown.add(restartMusic, this);
 	
 	//  We're going to be using physics, so enable the Arcade Physics system
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -118,10 +118,10 @@ function update() {
 	{
 		player.body.velocity.y = -300;
 	}
-	if (cursors.spaceKey.isDown)
-	{
-		fireFish();
-	}
+	//if (cursors.right.isDown)
+	//{
+	//	fireFish();
+	//}
 
 	game.physics.arcade.overlap(hook, fish, collectFish, null, this);
 	game.physics.arcade.overlap(player, shark, endGame, null, this);
@@ -133,11 +133,11 @@ function update() {
 	
 	
 }
-function restartMusic() {
+//function restartMusic() {
 	
-	sound.restart();
+//	sound.restart();
 	
-}
+//}
 
 function createFish()
 {
