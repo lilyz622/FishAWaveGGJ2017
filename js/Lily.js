@@ -92,10 +92,10 @@ function update() {
 function updateHook() {
 	hook.body.velocity.y = 0;
 	if (cursors.down.isDown) {
-		hook.body.velocity.y += 10;
+		hook.body.velocity.y += 100;
 	} else if (cursors.up.isDown) {
 		if (! (hook.y < player.y+player.height)){
-			hook.body.velocity.y -= 10;
+			hook.body.velocity.y -= 100;
 		} else {
 			hook.body.velocity.y = 0;
 		}
