@@ -13,7 +13,7 @@ function preload(){
 	game.load.image('ammoFish', 'assets/fish.png');
 	game.load.image('menu', 'assets/blackbox.png', 300, 180);
 	game.load.image('pirate', 'assets/pirate-red.png');
-	
+	game.load.image('shark', 'assets/shark.png');
 	// add sound
 	//add sound
 	game.load.audio('water', 'assets/audio/3m51s-water.mp3'); 
@@ -127,7 +127,6 @@ function update() {
 	// Collisions
 	game.physics.arcade.collide(player, waves);
 	
-
 	// Added
 	game.physics.arcade.collide(pirate, waves);
 	if (cursors.up.isDown && player.body.touching.down)
@@ -180,7 +179,7 @@ function shootFish() {
 	fishText.text = "Fish:\t"+fishCount;
 }
 
-function killPirate() {
+function killPirate(ammoFish, pirate) {
 	try {
 		ammoFish.kill();
 		pirate.kill();
@@ -209,7 +208,7 @@ function createPirate()
 
 function createShark()
 {
-	shark = game.add.sprite(900, game.world.height - 230, 'shark');
+	shark = game.add.sprite(900, game.world.height - 400, 'shark');
 	game.physics.arcade.enable(shark);
 	shark.body.velocity.x = -150;
 }
@@ -220,7 +219,7 @@ function updateScore()
 	scoreText.setText('Score: ' + score);
 }
 
-function collectFish() {
+function collectFish(player, fish) {
 	try {
 		fish.kill();
 		fishCount++;
