@@ -15,7 +15,8 @@ function preload(){
  
  
 	//add sound
-	game.load.audio('music', 'assets/sound/Waves_Crashing_on_Rock_Beach.mp3'); 
+	game.load.audio('water', 'assets/audio/3m51s-water.mp3'); 
+	game.load.audio('dramatic', 'assets/audio/18s-dramatic.mp3');
 	
 }
 
@@ -25,7 +26,6 @@ var cursors;
 var fish;
 var score;
 var scoreText;
-var sound;
 var pirate;
 var shark;
 var fishText;
@@ -33,15 +33,16 @@ var NORMAL_SPEED = 5;
 var ammoFish;
 
 //add sound
-var sound;
+var waterSound;
+var dramaticSound;
 
 function create() {
 	
 	//add sound
-	game.input.touch.preventDefault = false;
-	sound = game.add.audio('music');
-	sound.play();
-	game.input.onDown.add(restartMusic, this);
+	waterSound = game.add.audio('water');
+	dramaticSound = game.add.audio('dramatic');
+	waterSound.play();
+	waterSound.onStop.add(playbackDramatic);
 	
 	//  We're going to be using physics, so enable the Arcade Physics system
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -122,11 +123,6 @@ function update() {
 	
 	
 }
-function restartMusic() {
-	
-	sound.restart();
-	
-}
 
 function createFish()
 {
@@ -145,6 +141,7 @@ function createFish()
 
 function createPirate()
 {
+	waterSound.stop();
 	pirate = game.add.sprite(1000, 100, 'pirate');
 	game.physics.arcade.enable(pirate);
 	pirate.body.velocity.x = -200;
@@ -205,12 +202,11 @@ function endGame() {
 	}
 	
 }
-
+function playbackDramatic() {
+	dramaticSound.loopFull();
+}
 function render() {
 	
 	//game.debug.text("Time until event: " + game.time.events.duration.toFixed(0), 32, 32);
     //game.debug.text("Next tick: " + game.time.events.next.toFixed(0), 32, 64);
-	
-	//sound-related
-	game.debug.soundInfo(sound, 20, 32);
 }
