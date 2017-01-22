@@ -109,7 +109,7 @@ function update() {
 	{
 		player.body.velocity.y = -300;
 	}
-	if (this.spaceKey.isDown)
+	if (cursors.spaceKey.isDown)
 	{
 		fireFish();
 	}
