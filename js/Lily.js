@@ -140,9 +140,9 @@ function update() {
 	game.physics.arcade.overlap(player, pirate, endGame, null, this);
 	
 	// ammoFish
-	if (cursors.right.isDown && fishCount > 0 && (prevShot+300 < timer2.now)) {
+	if (cursors.right.isDown && fishCount > 0 && (prevShot+500 < this.game.time.totalElapsedSeconds())) {
 		shootFish();
-		prevShot = timer2.now;
+		prevShot = this.game.time.totalElapsedSeconds();
 	}
 	try {
 		game.physics.arcade.overlap(ammoFish, pirate, killPirate, null, this);
