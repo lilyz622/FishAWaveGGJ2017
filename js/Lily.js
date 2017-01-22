@@ -10,6 +10,7 @@ function preload(){
 	
 	// added
 	game.load.image('fish', 'assets/fish.png');
+	game.load.image('ammoFish', 'assets/fish.png');
 	game.load.image('menu', 'assets/blackbox.png', 300, 180);
 	game.load.image('pirate', 'assets/pirate-red.png');
 	
@@ -141,7 +142,12 @@ function update() {
 	if (cursors.right.isDown && fishCount > 0) {
 		shootFish();
 	}
-	game.physics.arcade.overlap(ammoFish, pirate, killPirate, null, this);
+	try {
+		game.physics.arcade.overlap(ammoFish, pirate, killPirate, null, this);
+	} catch (err) {
+		
+	}
+	
 	game.physics.arcade.overlap(hook, fish, collectFish, null, this);
 	game.physics.arcade.overlap(fishline, shark, endGame, null, this);
 }
@@ -167,7 +173,7 @@ function updateHook() {
 
 // mine
 function shootFish() {
-	ammoFish = game.add.sprite(player.x+player.width, player.y, 'fish');
+	ammoFish = game.add.sprite(player.x+player.width, player.y, 'ammoFish');
 	game.physics.arcade.enable(ammoFish);
 	ammoFish.body.velocity.x = 250;
 	fishCount --;
