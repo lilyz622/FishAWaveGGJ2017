@@ -32,6 +32,7 @@ var fish;
 var menu;
 var pirate;
 var fishText;
+var shark;
 
 var ammoFish;
 var fishCount = 0;
@@ -114,7 +115,7 @@ function update() {
 	game.physics.arcade.overlap(player, pirate, endGame, null, this);
 	
 	// ammoFish
-	if (cursors.spaceKey.isDown && fishCount > 0) {
+	if (cursors.spaceBar.isDown && fishCount > 0) {
 		shootFish();
 	}
 	game.physics.arcade.overlap(ammoFish, pirate, killPirate, null, this);
