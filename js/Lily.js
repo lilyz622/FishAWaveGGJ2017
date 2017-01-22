@@ -83,7 +83,7 @@ function update() {
 	updateHook();
 	
 	// Collisions
-	game.physics.arcade.collide(player, waves, false);
+	game.physics.arcade.collide(player, waves, true);
 	
 
 
@@ -91,10 +91,10 @@ function update() {
 
 function updateHook() {
 	if (cursors.down.isDown) {
-		hook.velocity.y += 150;
+		hook.body.velocity.y += 150;
 	} else if (cursors.up.isDown) {
 		if (! hook.y < player.y+player.height){
-			hook.velocity.y -= 150;
+			hook.body.velocity.y -= 150;
 		}
 	}
 }
