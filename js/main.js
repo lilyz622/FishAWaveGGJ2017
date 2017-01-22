@@ -138,7 +138,7 @@ function createFish()
 
 function createPirate()
 {
-	pirate = game.add.sprite(900, 300, 'pirate');
+	pirate = game.add.sprite(900, 100, 'pirate');
 	game.physics.arcade.enable(pirate);
 	pirate.body.velocity.x = -200;
 	game.physics.arcade.collide(pirate, waves);
