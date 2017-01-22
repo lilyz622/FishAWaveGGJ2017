@@ -219,7 +219,7 @@ function updateScore()
 	scoreText.setText('Score: ' + score);
 }
 
-function collectFish(player, fish) {
+function collectFish(hook, fish) {
 	try {
 		fish.kill();
 		fishCount++;
