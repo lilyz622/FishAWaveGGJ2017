@@ -1,4 +1,4 @@
-var game = new Phaser.Game(800, 600, Phaser.AUTO, 'Fish A Wave', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'Fish A Wave', { preload: preload, create: create, update: update, render: render });
 
 
 function preload(){
@@ -14,9 +14,8 @@ function preload(){
  
  
 	//add sound
-	game.load.audio('water', 'assets/audio/Waves_Crashing_on_Rock_Beach.mp3'); 
-	game.load.audio('overture', 'assets/audio/Cortosis-1.mp3');
-	game.load.audio('dramatic', 'assets/audio/Cortosis-3.mp3');
+	game.load.audio('water', 'assets/audio/3m51s-water.mp3'); 
+	game.load.audio('dramatic', 'assets/audio/18s-dramatic.mp3');
 }
 
 var waves;
@@ -32,22 +31,23 @@ var NORMAL_SPEED = 5;
 
 //add sound
 var waterSound;
-var overtureSound;
 var dramaticSound;
-var sounds;
 
 function create() {
 	
-	waterSound = game.add.audio('water');
+	waterSound = new Sound(game, 'water');
+	dramaticSound = new Sound(game, 'dramatic', true);
+	waterSound.duration = 8;
+	waterSound.play();
+	waterSound.onStop.add(playbackDramatic());
+	
+	/* waterSound = game.add.audio('water');
 	waterSound.addMarker('endPeace', 0, 5, 1, false);
 	waterSound.play('endPeace');
 	
-	overtureSound = game.add.audio('overture');
-	overtureSound.play();
-	
 	dramaticSound = game.add.audio('dramatic');
 	dramaticSound.play();
-	dramaticSound.loopFull();
+	dramaticSound.loopFull(); */
 			/* //add sound
 			game.input.touch.preventDefault = false;
 			sound = game.add.audio('music');
@@ -240,11 +240,15 @@ function endGame() {
 	
 }
 
-/* function render() {
+function playbackDramatic() {
+	dramaticSound.play();
+}
+function render() {
 	
 	//game.debug.text("Time until event: " + game.time.events.duration.toFixed(0), 32, 32);
     //game.debug.text("Next tick: " + game.time.events.next.toFixed(0), 32, 64);
 	
 	//sound-related
-	game.debug.soundInfo(firstWater, 20, 32);
-} */
+	game.debug.soundInfo(waterSound, 20, 32);
+	game.debug.soundInfo(dramaticSound, 20, 64);
+}
