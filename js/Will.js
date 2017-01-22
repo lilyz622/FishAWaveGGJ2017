@@ -18,7 +18,7 @@ function preload(){
 	//game.load.audio('music', 'assets/sound/Waves_Crashing_on_Rock_Beach.mp3'); 
 	
 }
-var hook;
+//var hook;
 var waves;
 var player;
 var cursors;
@@ -123,12 +123,12 @@ function update() {
 	//	fireFish();
 	//}
 
-	game.physics.arcade.overlap(hook, fish, collectFish, null, this);
+	//game.physics.arcade.overlap(hook, fish, collectFish, null, this);
 	game.physics.arcade.overlap(player, shark, endGame, null, this);
 	game.physics.arcade.overlap(player, pirate, endGame, null, this);
 	game.physics.arcade.overlap(ammoFish, pirate, killPirate, null, this);
 	game.physics.arcade.overlap(fishline, shark, endGame, null, this);
-	game.physics.arcade.overlap(hook, shark, endGame, null, this);
+	//game.physics.arcade.overlap(hook, shark, endGame, null, this);
 		
 	
 	
