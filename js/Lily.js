@@ -40,7 +40,7 @@ var pirate;
 var fishText;
 var shark;
 var prevShot = 0;
-
+var timer2;
 var ammoFish;
 var fishCount = 3;
 
@@ -94,6 +94,7 @@ function create() {
 	timer = game.time.create(false);
 	timer.loop(700, updateScore, this);
 	timer.start();
+	timer2 = game.time.create(false);
 	
 	//The fish count
     fishText = game.add.text(16, 50, 'Fish:\t'+fishCount, { fontSize: '32px', fill: '#000' });
@@ -141,7 +142,7 @@ function update() {
 	// ammoFish
 	if (cursors.right.isDown && fishCount > 0 && (prevShot < game.time.now-1000)) {
 		shootFish();
-		prevShot = game.time.now();
+		prevShot = timer2.now;
 	}
 	try {
 		game.physics.arcade.overlap(ammoFish, pirate, killPirate, null, this);
