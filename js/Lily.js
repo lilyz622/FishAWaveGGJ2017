@@ -39,6 +39,7 @@ var menu;
 var pirate;
 var fishText;
 var shark;
+var prevShot = 0;
 
 var ammoFish;
 var fishCount = 3;
@@ -138,8 +139,9 @@ function update() {
 	game.physics.arcade.overlap(player, pirate, endGame, null, this);
 	
 	// ammoFish
-	if (cursors.right.isDown && fishCount > 0) {
+	if (cursors.right.isDown && fishCount > 0 && (prevShot < game.time.now-1000)) {
 		shootFish();
+		prevShot = game.time.now();
 	}
 	try {
 		game.physics.arcade.overlap(ammoFish, pirate, killPirate, null, this);
@@ -209,7 +211,7 @@ function createPirate()
 
 function createShark()
 {
-	shark = game.add.sprite(900, game.world.height - 200, 'shark');
+	shark = game.add.sprite(900, game.world.height - 250, 'shark');
 	game.physics.arcade.enable(shark);
 	shark.body.velocity.x = -150;
 }
