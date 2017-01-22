@@ -146,7 +146,7 @@ function update() {
 	} catch (err) {
 		
 	}
-	
+	game.physics.arcade.overlap(ammoFish,shark, killShark, null, this);
 	game.physics.arcade.overlap(hook, fish, collectFish, null, this);
 	game.physics.arcade.overlap(fishline, shark, endGame, null, this);
 }
