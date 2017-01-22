@@ -93,6 +93,7 @@ function update() {
 	
 		// Collide 
 	game.physics.arcade.collide(player, waves);
+	game.physics.arcade.collide(pirate, waves);
 	
 	//Check if player overlaps with fishes
 	//game.physics.arcade.overlap(player, fish, collectFish, null, this);
