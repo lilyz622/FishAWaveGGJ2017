@@ -88,13 +88,22 @@ function create() {
 	fishline = new Phaser.Line(player.x+HX_OFFSET, player.y+LY_OFFSET, hook.x, hook.y);
 
     //  The score
-    scoreText = game.add.text(16, 16, 'Score:\t', { fontSize: '32px', fill: '#000' });
-    //The fish count
+    scoreText = game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
+	timer = game.time.create(false);
+	timer.loop(700, updateScore, this);
+	timer.start();
+	
+	//The fish count
     fishText = game.add.text(16, 32, 'Fish:\t'+fishCount, { fontSize: '32px', fill: '#000' });
 
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
 
+	game.time.events.repeat(Phaser.Timer.SECOND * 2, createFish, this);
+	game.time.events.repeat(Phaser.Timer.SECOND * 4, createPirate, this);
+	game.time.events.repeat(Phaser.Timer.SECOND * 7, createShark, this);
+	
+	
 
     //  The first parameter is how long to wait before the event fires. In this case 5 seconds (you could pass in 2000 as the value as well.)
     //  The second parameter is how many times the event will run in total. Here we'll run it 2 times.
@@ -134,7 +143,7 @@ function update() {
 	}
 	game.physics.arcade.overlap(ammoFish, pirate, killPirate, null, this);
 	game.physics.arcade.overlap(hook, fish, collectFish, null, this);
-	
+	game.physics.arcade.overlap(fishline, shark, endGame, null, this);
 }
 
 function render() {
@@ -185,11 +194,24 @@ function createFish()
 function createPirate()
 {
 	waterSound.stop();
-	pirate = game.add.sprite(900, 100, 'pirate');
+	pirate = game.add.sprite(1000, 100, 'pirate');
 	game.physics.arcade.enable(pirate);
 	pirate.body.velocity.x = -200;
 	game.physics.arcade.collide(pirate, waves);
-	pirate.body.gravity.y = 400;
+	pirate.body.gravity.y = 600;
+}
+
+function createShark()
+{
+	shark = game.add.sprite(900, game.world.height - 230, 'shark');
+	game.physics.arcade.enable(shark);
+	shark.body.velocity.x = -150;
+}
+
+function updateScore()
+{
+	score++;
+	scoreText.setText('Score: ' + score);
 }
 
 function collectFish() {
@@ -212,7 +234,8 @@ function endGame() {
 	var menu = game.add.sprite(w/2, h/2, 'menu');
 	menu.anchor.setTo(0.5, 0.5);
 	
-	var endMessage = "GAME OVER";
+	var endMessage = "GAME OVER\nYOUR SCORE: " + score;
+	
 	var endText = game.add.text(game.world.centerX, game.world.centerY, endMessage,{fill: '#fff' });
 	endText.anchor.setTo(0.5,0.5);
 
