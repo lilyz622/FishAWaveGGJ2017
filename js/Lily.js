@@ -208,7 +208,7 @@ function createPirate()
 
 function createShark()
 {
-	shark = game.add.sprite(900, game.world.height - 400, 'shark');
+	shark = game.add.sprite(900, game.world.height - 200, 'shark');
 	game.physics.arcade.enable(shark);
 	shark.body.velocity.x = -150;
 }
