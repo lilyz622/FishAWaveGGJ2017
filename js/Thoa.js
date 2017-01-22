@@ -54,12 +54,13 @@ function create() {
 	sounds.add('overture');
 	sounds.add('dramatic'); */
 	
+	game.input.touch.preventDefault = false;
 	firstWater = game.add.audio('water');
 	firstWater.play();
-    secondOverture = game.add.audio('overture');
+    /* secondOverture = game.add.audio('overture');
 	secondOverture.play();
 	thirdDramatic = game.add.audio('dramatic', 1, true);
-	thirdDramatic.play();
+	thirdDramatic.play(); */
 
     /* sounds = [ firstWater, secondOverture, thirdDramatic ];
 
