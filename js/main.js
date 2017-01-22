@@ -40,7 +40,7 @@ function create() {
 	
 	//add sound
 	waterSound = game.add.audio('water');
-	dramaticSound = game.add.audio('dramatic');
+	dramaticSound = game.add.audio('dramatic', 1, true);
 	waterSound.play();
 	waterSound.onStop.add(playbackDramatic);
 	
@@ -141,7 +141,14 @@ function createFish()
 
 function createPirate()
 {
-	waterSound.stop();
+	if (waterSoundound.isPlaying)
+	{	
+		waterSound.stop();
+	}
+	else 
+	{
+		dramaticSound.resume();
+	}
 	pirate = game.add.sprite(1000, 100, 'pirate');
 	game.physics.arcade.enable(pirate);
 	pirate.body.velocity.x = -200;
@@ -203,7 +210,7 @@ function endGame() {
 	
 }
 function playbackDramatic() {
-	dramaticSound.loopFull();
+	dramaticSound.play();
 }
 function render() {
 	
