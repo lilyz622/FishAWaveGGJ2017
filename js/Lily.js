@@ -14,7 +14,7 @@ function preload(){
 	game.load.image('menu', 'assets/blackbox.png', 300, 180);
 	game.load.image('pirate', 'assets/pirate-red.png');
 	game.load.image('shark', 'assets/shark.png');
-	// add sound
+
 	//add sound
 	game.load.audio('water', 'assets/audio/3m51s-water.mp3'); 
 	game.load.audio('dramatic', 'assets/audio/18s-dramatic.mp3');
@@ -52,7 +52,7 @@ var dramaticSound;
 function create() {
 	
 	waterSound = game.add.audio('water');
-	dramaticSound = game.add.audio('dramatic');
+	dramaticSound = game.add.audio('dramatic', 1, true);
 	waterSound.play();
 	waterSound.onStop.add(playbackDramatic);
 	
@@ -203,7 +203,14 @@ function createFish()
 
 function createPirate()
 {
-	waterSound.stop();
+	if (waterSound.isPlaying)
+	{
+		waterSound.stop();
+	}
+	else
+	{
+		dramaticSound.resume();
+	}
 	pirate = game.add.sprite(800, 0, 'pirate');
 	game.physics.arcade.enable(pirate);
 	pirate.body.velocity.x = -200;
@@ -263,5 +270,5 @@ function endGame(shark, line, hook) {
 }
 
 function playbackDramatic() {
-	dramaticSound.loopFull();
+	dramaticSound.play();
 }
