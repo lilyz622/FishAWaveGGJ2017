@@ -1,4 +1,4 @@
-var game = new Phaser.Game(800, 600, Phaser.AUTO, 'Fish A Wave', { preload: preload, create: create, update: update, render: render });
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'Fish A Wave', { preload: preload, create: create, update: update });
 
 
 function preload(){
@@ -14,9 +14,9 @@ function preload(){
  
  
 	//add sound
-	game.load.audio('water', 'assets/sound/Waves_Crashing_on_Rock_Beach.mp3'); 
-	game.load.audio('overture', 'assets/sound/Cortosis-1.mp3');
-	game.load.audio('dramatic', 'assets/sound/Cortosis-3.mp3');
+	game.load.audio('water', 'assets/audio/Waves_Crashing_on_Rock_Beach.mp3'); 
+	game.load.audio('overture', 'assets/audio/Cortosis-1.mp3');
+	game.load.audio('dramatic', 'assets/audio/Cortosis-3.mp3');
 }
 
 var waves;
@@ -25,49 +25,57 @@ var cursors;
 var fish;
 var score;
 var scoreText;
-var sound;
 var pirate;
 var shark;
 var fishText;
 var NORMAL_SPEED = 5;
 
 //add sound
-var firstWater;
-var secondOverture;
-var thirdDramatic;
+var waterSound;
+var overtureSound;
+var dramaticSound;
 var sounds;
 
 function create() {
 	
-	/* //add sound
-	game.input.touch.preventDefault = false;
-	sound = game.add.audio('music');
-	sound.play();
-	game.input.onDown.add(restartMusic, this);
+	waterSound = game.add.audio('water');
+	waterSound.addMarker('endPeace', 0, 5, 1, false);
+	waterSound.play('endPeace');
 	
-	//create a SoundManager managing the 3 sound files
-	sounds = new SoundManager(game);
-	//all sounds are muted the game pauses (such as at loss of focus),
-	//to keep they playing regardless of the game pause state, set muteOnPause to false.
-	sounds.touchLocked = true;
-	sounds.play('music');
-	sounds.add('overture');
-	sounds.add('dramatic'); */
+	overtureSound = game.add.audio('overture');
+	overtureSound.play();
 	
-	firstWater = game.add.audio('water');
-	firstWater.play();
-    /* secondOverture = game.add.audio('overture');
-	secondOverture.play();
-	thirdDramatic = game.add.audio('dramatic', 1, true);
-	thirdDramatic.play(); */
+	dramaticSound = game.add.audio('dramatic');
+	dramaticSound.play();
+	dramaticSound.loopFull();
+			/* //add sound
+			game.input.touch.preventDefault = false;
+			sound = game.add.audio('music');
+			sound.play();
+			game.input.onDown.add(restartMusic, this);
+			
+			//create a SoundManager managing the 3 sound files
+			sounds = new SoundManager(game);
+			//all sounds are muted the game pauses (such as at loss of focus),
+			//to keep they playing regardless of the game pause state, set muteOnPause to false.
+			sounds.touchLocked = true;
+			sounds.play('music');
+			sounds.add('overture');
+			sounds.add('dramatic'); */
+			
+			
+			/* secondOverture = game.add.audio('overture');
+			secondOverture.play();
+			thirdDramatic = game.add.audio('dramatic', 1, true);
+			thirdDramatic.play(); */
 
-    /* sounds = [ firstWater, secondOverture, thirdDramatic ];
+			/* sounds = [ firstWater, secondOverture, thirdDramatic ];
 
-    //  Being mp3 files these take time to decode, so we can't play them instantly
-    //  Using setDecodedCallback we can be notified when they're ALL ready for use.
-    //  The audio files could decode in ANY order, we can never be sure which it'll be.
+			//  Being mp3 files these take time to decode, so we can't play them instantly
+			//  Using setDecodedCallback we can be notified when they're ALL ready for use.
+			//  The audio files could decode in ANY order, we can never be sure which it'll be.
 
-    game.sound.setDecodedCallback(sounds, start, this); */
+			game.sound.setDecodedCallback(sounds, start, this); */
 	
 	//  We're going to be using physics, so enable the Arcade Physics system
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -232,11 +240,11 @@ function endGame() {
 	
 }
 
-function render() {
+/* function render() {
 	
 	//game.debug.text("Time until event: " + game.time.events.duration.toFixed(0), 32, 32);
     //game.debug.text("Next tick: " + game.time.events.next.toFixed(0), 32, 64);
 	
 	//sound-related
 	game.debug.soundInfo(firstWater, 20, 32);
-}
+} */
