@@ -63,7 +63,7 @@ function create() {
     sky = game.add.tileSprite(0, 0, 800, 600,'sky');
 
     //  waves
-    waves = game.add.tileSprite(0, game.world.centerY-50, 800, 300, 'waves');
+    waves = game.add.tileSprite(0, game.world.centerY-50, 800, 350, 'waves');
 	console.log(waves);
 	game.physics.arcade.enable(waves);
 	waves.body.immovable = true;
@@ -100,7 +100,7 @@ function create() {
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
 
-	game.time.events.repeat(Phaser.Timer.SECOND * 2.5, 20, createFish, this);
+	game.time.events.repeat(Phaser.Timer.SECOND * 3, 20, createFish, this);
 	game.time.events.repeat(Phaser.Timer.SECOND * 5, 20, createPirate, this);
 	game.time.events.repeat(Phaser.Timer.SECOND * 7, 20, createShark, this);
 	
