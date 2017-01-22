@@ -234,7 +234,7 @@ function collectFish(hook, fish) {
 	fishText.text = "Fish:\t"+fishCount;
 }
 
-function endGame() {
+function endGame(shark, line, hook) {
 	
 	game.paused = true;
 	var w = game.world.width;
