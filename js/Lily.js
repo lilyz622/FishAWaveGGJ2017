@@ -95,13 +95,13 @@ function create() {
 	timer.start();
 	
 	//The fish count
-    fishText = game.add.text(16, 32, 'Fish:\t'+fishCount, { fontSize: '32px', fill: '#000' });
+    fishText = game.add.text(16, 50, 'Fish:\t'+fishCount, { fontSize: '32px', fill: '#000' });
 
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
 
-	game.time.events.repeat(Phaser.Timer.SECOND * 2, 20, createFish, this);
-	game.time.events.repeat(Phaser.Timer.SECOND * 4, 10, createPirate, this);
+	game.time.events.repeat(Phaser.Timer.SECOND * 5, 20, createFish, this);
+	game.time.events.repeat(Phaser.Timer.SECOND * 5, 10, createPirate, this);
 	game.time.events.repeat(Phaser.Timer.SECOND * 7, 10, createShark, this);
 	
 	
@@ -172,7 +172,7 @@ function updateHook() {
 
 // mine
 function shootFish() {
-	ammoFish = game.add.sprite(player.x+player.width, player.y, 'ammoFish');
+	ammoFish = game.add.sprite(player.x+player.width, player.y+50, 'ammoFish');
 	game.physics.arcade.enable(ammoFish);
 	ammoFish.body.velocity.x = 250;
 	fishCount --;
