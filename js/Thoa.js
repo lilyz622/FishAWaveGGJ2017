@@ -1,4 +1,4 @@
-var game = new Phaser.Game(800, 600, Phaser.AUTO, 'Fish A Wave', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'Fish A Wave', { preload: preload, create: create, update: update, render: render });
 
 
 function preload(){
@@ -15,8 +15,8 @@ function preload(){
  
 	//add sound
 	game.load.audio('water', 'assets/sound/Waves_Crashing_on_Rock_Beach.mp3'); 
-	game.load.audio('overture', 'assets/sound/Cortosis-1');
-	game.load.audio('dramatic', 'assets/sound/Cortosis-3');
+	game.load.audio('overture', 'assets/sound/Cortosis-1.mp3');
+	game.load.audio('dramatic', 'assets/sound/Cortosis-3.mp3');
 }
 
 var waves;
@@ -54,7 +54,6 @@ function create() {
 	sounds.add('overture');
 	sounds.add('dramatic'); */
 	
-	game.input.touch.preventDefault = false;
 	firstWater = game.add.audio('water');
 	firstWater.play();
     /* secondOverture = game.add.audio('overture');
