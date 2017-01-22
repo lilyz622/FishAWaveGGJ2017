@@ -55,10 +55,10 @@ function create() {
 	sounds.add('dramatic'); */
 	
 	firstWater = game.add.audio('water');
+	firstWater.play();
     secondOverture = game.add.audio('overture');
-	thirdDramatic = game.add.audio('dramatic', 1, true);
-    firstWater.play();
 	secondOverture.play();
+	thirdDramatic = game.add.audio('dramatic', 1, true);
 	thirdDramatic.play();
 
     /* sounds = [ firstWater, secondOverture, thirdDramatic ];
