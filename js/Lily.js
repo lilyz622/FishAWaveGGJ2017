@@ -41,7 +41,7 @@ var fishText;
 var shark;
 
 var ammoFish;
-var fishCount = 1;
+var fishCount = 3;
 
 //add sound
 var waterSound;
@@ -176,7 +176,7 @@ function shootFish() {
 	ammoFish = game.add.sprite(player.x+player.width, player.y+50, 'ammoFish');
 	game.physics.arcade.enable(ammoFish);
 	ammoFish.body.velocity.x = 250;
-	fishCount --;
+	fishCount = fishCount-1;
 	fishText.text = "Fish:\t"+fishCount;
 }
 
