@@ -79,7 +79,7 @@ function update() {
     player.body.velocity.x = 0;
 	waves.tilePosition.x += NORMAL_SPEED;
 	sky.tilePosition.x+= NORMAL_SPEED;
-	fishline.fromSprite(player,hook, true);
+	fishline.fromSprite(player,hook);
 	updateHook();
 	
 	// Collisions
