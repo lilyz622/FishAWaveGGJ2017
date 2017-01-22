@@ -39,7 +39,7 @@ function create() {
 	dramaticSound = game.add.audio('dramatic', true);
 	waterSound.duration = 8;
 	waterSound.play();
-	waterSound.onStop.add(playbackDramatic());
+	waterSound.onStop.add(playbackDramatic);
 	
 	/* waterSound = game.add.audio('water');
 	waterSound.addMarker('endPeace', 0, 5, 1, false);
