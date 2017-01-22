@@ -35,7 +35,7 @@ var fishText;
 var shark;
 
 var ammoFish;
-var fishCount = 0;
+var fishCount = 1;
 
 
 
