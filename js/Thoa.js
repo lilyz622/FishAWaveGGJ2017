@@ -54,18 +54,20 @@ function create() {
 	sounds.add('overture');
 	sounds.add('dramatic'); */
 	
-	firstwater = game.add.audio('water');
+	firstWater = game.add.audio('water');
     secondOverture = game.add.audio('overture');
 	thirdDramatic = game.add.audio('dramatic', 1, true);
-    
+    firstWater.play();
+	secondOverture.play();
+	thirdDramatic.play();
 
-    sounds = [ firstWater, secondOverture, thirdDramatic ];
+    /* sounds = [ firstWater, secondOverture, thirdDramatic ];
 
     //  Being mp3 files these take time to decode, so we can't play them instantly
     //  Using setDecodedCallback we can be notified when they're ALL ready for use.
     //  The audio files could decode in ANY order, we can never be sure which it'll be.
 
-    game.sound.setDecodedCallback(sounds, start, this);
+    game.sound.setDecodedCallback(sounds, start, this); */
 	
 	//  We're going to be using physics, so enable the Arcade Physics system
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -145,7 +147,7 @@ function update() {
 	sound.restart();
 	
 } */
-function start() {
+/* function start() {
 
     sounds.shift();
 
@@ -173,7 +175,7 @@ function hasLooped(sound) {
         current.loopFull();
     } */
 
-}
+} */
 
 
 function createFish()
