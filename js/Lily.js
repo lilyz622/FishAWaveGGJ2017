@@ -17,7 +17,8 @@ function preload(){
 }
 
 var NORMAL_SPEED = -5;
-var HOFFSET=100;
+var HX_OFFSET =90;
+var LY_OFFSET =15;
 var waves;
 var sky;
 var player;
@@ -30,6 +31,11 @@ var scoreText;
 var fish;
 var menu;
 var pirate;
+var fishText;
+
+var ammoFish;
+var fishCount = 0;
+
 
 
 function create() {
@@ -57,19 +63,19 @@ function create() {
     player.body.collideWorldBounds = true;
 	
 	// hook 
-	hook = game.add.sprite(player.x+HOFFSET,player.y+player.height*2,'hook');
+	hook = game.add.sprite(player.x+HX_OFFSET,player.y+player.height*2,'hook');
 	game.physics.arcade.enable(hook);
 	hook.body.gravity.y = 1;
 	hook.body.collideWorldBounds = true;
 	
 	// line
 	//  Create a BitmapData just to plot to
-	fishline = new Phaser.Line(player.x+HOFFSET, player.y+20, hook.x, hook.y);
+	fishline = new Phaser.Line(player.x+HX_OFFSET, player.y+LY_OFFSET, hook.x, hook.y);
 
     //  The score
-    scoreText = game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
+    scoreText = game.add.text(16, 16, 'Score:\t', { fontSize: '32px', fill: '#000' });
     //The fish count
-    fishText = game.add.text(16, 32, 'Fish: 0', { fontSize: '32px', fill: '#000' });
+    fishText = game.add.text(16, 32, 'Fish:\t'+fishCount, { fontSize: '32px', fill: '#000' });
 
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
@@ -89,9 +95,9 @@ function update() {
 	//  Reset the players velocity (movement)
     player.body.velocity.x = 0;
 	waves.tilePosition.x += NORMAL_SPEED;
-	sky.tilePosition.x+= NORMAL_SPEED;
+	sky.tilePosition.x+= NORMAL_SPEED*.5;
 	updateHook();
-	fishline.setTo(player.x+HOFFSET,player.y+20,hook.x,hook.y);
+	fishline.setTo(player.x+HX_OFFSET,player.y+LY_OFFSET,hook.x,hook.y);
 	
 	// Collisions
 	game.physics.arcade.collide(player, waves);
@@ -103,10 +109,17 @@ function update() {
 	{
 		player.body.velocity.y = -300;
 	}
-	game.physics.arcade.overlap(player, fish, collectFish, null, this);
+	// game.physics.arcade.overlap(player, fish, collectFish, null, this);
 	game.physics.arcade.overlap(player, shark, endGame, null, this);
 	game.physics.arcade.overlap(player, pirate, endGame, null, this);
-
+	
+	// ammoFish
+	if (cursors.spaceKey.isDown && fishCount > 0) {
+		shootFish();
+	}
+	game.physics.arcade.overlap(ammoFish, pirate, killPirate, null, this);
+	game.physics.arcade.overlap(hook, fish, collectFish, null, this);
+	
 }
 
 function render() {
@@ -128,21 +141,30 @@ function updateHook() {
 	}
 }
 
+// mine
+function shootFish() {
+	ammoFish = game.add.sprite(player.x+player.width, player.y, 'fish');
+	game.physics.arcade.enable(ammoFish);
+	ammoFish.body.velocity.x = 250;
+	fishCount --;
+	fishText.text = "Fish:\t"+fishCount;
+}
+
+function killPirate() {
+	try {
+		ammoFish.kill();
+		pirate.kill();
+	} catch (err) {
+		
+	}
+}
 
 // Added
 function createFish()
-{
-	try {
-		fish.kill();
-	} catch (err){
-		
-	}
-	
-	
+{	
 	fish = game.add.sprite(900, 500, 'fish');
 	game.physics.arcade.enable(fish);
 	fish.body.velocity.x = -150;
-	
 }
 
 function createPirate()
@@ -155,8 +177,13 @@ function createPirate()
 }
 
 function collectFish() {
-	
-	//todo
+	try {
+		fish.kill();
+		fishCount++;
+	} catch (err) {
+		
+	}	
+	fishText.text = "Fish:\t"+fishCount;
 }
 
 function endGame() {
