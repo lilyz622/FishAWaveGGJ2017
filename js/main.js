@@ -10,7 +10,7 @@ function preload(){
 	game.load.spritesheet('captain', 'assets/captain.png', 259, 185, 1);
 	game.load.image('fish', 'assets/fish.png');
 	game.load.image('shark', 'assets/shark.png');
-	game.load.image('menu', 'assets/blackbox.png', 360, 200);
+	game.load.image('menu', 'assets/blackbox.png', 300, 180);
  
  
 	//add sound
@@ -139,8 +139,9 @@ function createPirate()
 {
 	pirate = game.add.sprite(900, 0, 'pirate');
 	game.physics.arcade.enable(pirate);
-	pirate.body.velocity.x = -150;
+	pirate.body.velocity.x = -200;
 	game.physics.arcade.collide(pirate, waves);
+	pirate.body.gravity.y = 400;
 }
 
 function collectFish() {
