@@ -100,9 +100,9 @@ function create() {
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
 
-	game.time.events.repeat(Phaser.Timer.SECOND * 5, 20, createFish, this);
-	game.time.events.repeat(Phaser.Timer.SECOND * 5, 10, createPirate, this);
-	game.time.events.repeat(Phaser.Timer.SECOND * 7, 10, createShark, this);
+	game.time.events.repeat(Phaser.Timer.SECOND * 2, 20, createFish, this);
+	game.time.events.repeat(Phaser.Timer.SECOND * 5, 20, createPirate, this);
+	game.time.events.repeat(Phaser.Timer.SECOND * 7, 20, createShark, this);
 	
 	
 
@@ -146,9 +146,10 @@ function update() {
 	} catch (err) {
 		
 	}
-	game.physics.arcade.overlap(ammoFish,shark, killShark, null, this);
+	// game.physics.arcade.overlap(ammoFish,pirate, killPirate, null, this);
 	game.physics.arcade.overlap(hook, fish, collectFish, null, this);
 	game.physics.arcade.overlap(fishline, shark, endGame, null, this);
+	game.physics.arcade.overlap(hook, shark, endGame, null, this);
 }
 
 function render() {
@@ -199,7 +200,7 @@ function createFish()
 function createPirate()
 {
 	waterSound.stop();
-	pirate = game.add.sprite(1000, 100, 'pirate');
+	pirate = game.add.sprite(1000, 0, 'pirate');
 	game.physics.arcade.enable(pirate);
 	pirate.body.velocity.x = -200;
 	game.physics.arcade.collide(pirate, waves);
