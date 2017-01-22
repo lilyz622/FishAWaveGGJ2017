@@ -12,6 +12,7 @@ function preload(){
 }
 
 var NORMAL_SPEED = -5;
+var HOFFSET=100;
 var waves;
 var sky;
 var player;
@@ -47,13 +48,14 @@ function create() {
     player.body.collideWorldBounds = true;
 	
 	// hook 
-	hook = game.add.sprite(player.x,player.y+player.height+80,'hook');
+	hook = game.add.sprite(player.x+HOFFSET,player.y+player.height*2,'hook');
 	game.physics.arcade.enable(hook);
 	hook.body.gravity.y = 1;
 	hook.body.collideWorldBounds = true;
 	
 	// line
-	fishline = new Phaser.Line(player.x, player.y, hook.x, hook.y);
+	//  Create a BitmapData just to plot to
+	fishline = new Phaser.Line(player.x+HOFFSET, player.y+20, hook.x, hook.y);
 
     //  The score
     scoreText = game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
@@ -79,8 +81,8 @@ function update() {
     player.body.velocity.x = 0;
 	waves.tilePosition.x += NORMAL_SPEED;
 	sky.tilePosition.x+= NORMAL_SPEED;
-	fishline.fromSprite(player,hook);
 	updateHook();
+	fishline.setTo(player.x+HOFFSET,player.y+20,hook.x,hook.y);
 	
 	// Collisions
 	game.physics.arcade.collide(player, waves);
@@ -94,7 +96,7 @@ function updateHook() {
 	if (cursors.down.isDown) {
 		hook.body.velocity.y += 100;
 	} else if (cursors.up.isDown) {
-		if (! (hook.y < player.y+player.height)){
+		if (! (hook.y < (player.y+player.height))){
 			hook.body.velocity.y -= 100;
 		} else {
 			hook.body.velocity.y = 0;
@@ -103,7 +105,9 @@ function updateHook() {
 }
 
 function render() {
-
+	game.context.strokeStyle = 'rgb(0,255,255)';
+	
+	game.debug.geom(line);
     game.debug.text("Time until event: " + game.time.events.duration.toFixed(0), 32, 32);
     game.debug.text("Next tick: " + game.time.events.next.toFixed(0), 32, 64);
 
