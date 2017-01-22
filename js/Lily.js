@@ -100,7 +100,7 @@ function create() {
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
 
-	game.time.events.repeat(Phaser.Timer.SECOND * 5, 20, createFish, this);
+	game.time.events.repeat(Phaser.Timer.SECOND * 2.5, 20, createFish, this);
 	game.time.events.repeat(Phaser.Timer.SECOND * 5, 20, createPirate, this);
 	game.time.events.repeat(Phaser.Timer.SECOND * 7, 20, createShark, this);
 	
@@ -194,7 +194,7 @@ function createFish()
 {	
 	fish = game.add.sprite(900, 500, 'fish');
 	game.physics.arcade.enable(fish);
-	fish.body.velocity.x = -150;
+	fish.body.velocity.x = -300;
 }
 
 function createPirate()
