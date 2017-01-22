@@ -240,6 +240,6 @@ function render() {
 	//game.debug.text("Time until event: " + game.time.events.duration.toFixed(0), 32, 32);
     //game.debug.text("Next tick: " + game.time.events.next.toFixed(0), 32, 64);
 	
-	/* //sound-related
-	game.debug.soundInfo(sounds, 20, 32); */
+	//sound-related
+	game.debug.soundInfo(firstWater, 20, 32);
 }
