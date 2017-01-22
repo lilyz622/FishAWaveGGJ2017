@@ -49,7 +49,7 @@ function create() {
 	// hook 
 	hook = game.add.sprite(player.x,player.y+player.height+80,'hook');
 	game.physics.arcade.enable(hook);
-	hook.body.gravity.y = 10;
+	hook.body.gravity.y = 1;
 	hook.body.collideWorldBounds = true;
 	
 	// line
@@ -90,6 +90,7 @@ function update() {
 }
 
 function updateHook() {
+	hook.body.velocity.y = 0;
 	if (cursors.down.isDown) {
 		hook.body.velocity.y += 150;
 	} else if (cursors.up.isDown) {
