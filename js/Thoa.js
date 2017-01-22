@@ -37,7 +37,6 @@ function create() {
 	
 	waterSound = game.add.audio('water');
 	dramaticSound = game.add.audio('dramatic');
-	waterSound.stopTime = 5;
 	waterSound.play();
 	waterSound.onStop.add(playbackDramatic);
 	
@@ -201,6 +200,7 @@ function createFish()
 
 function createPirate()
 {
+	waterSound.stop();
 	pirate = game.add.sprite(900, 0, 'pirate');
 	game.physics.arcade.enable(pirate);
 	pirate.body.velocity.x = -200;
