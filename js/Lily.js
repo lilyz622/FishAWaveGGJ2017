@@ -106,7 +106,7 @@ function updateHook() {
 
 function render() {
 	
-	game.debug.geom(line);
+	game.debug.geom(fishline);
     game.debug.text("Time until event: " + game.time.events.duration.toFixed(0), 32, 32);
     game.debug.text("Next tick: " + game.time.events.next.toFixed(0), 32, 64);
 
