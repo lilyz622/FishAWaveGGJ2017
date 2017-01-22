@@ -36,7 +36,7 @@ var dramaticSound;
 function create() {
 	
 	waterSound = game.add.audio('water');
-	dramaticSound = game.add.audio('dramatic', true);
+	dramaticSound = game.add.audio('dramatic');
 	waterSound.duration = 5;
 	waterSound.play();
 	waterSound.onStop.add(playbackDramatic);
@@ -241,7 +241,7 @@ function endGame() {
 }
 
 function playbackDramatic() {
-	dramaticSound.play();
+	dramaticSound.loopFull();
 }
 function render() {
 	
