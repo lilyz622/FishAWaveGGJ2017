@@ -1,4 +1,4 @@
-var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update,render: render });
+var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update, render: render });
 
 
 function preload(){
@@ -7,6 +7,11 @@ function preload(){
 	game.load.image('player', 'assets/captain.png')
 	game.load.image('sky', 'assets/sky1.png');
 	game.load.image('hook', 'assets/hook.png');
+	
+	// added
+	game.load.image('fish', 'assets/fish.png');
+	game.load.image('menu', 'assets/blackbox.png', 300, 180);
+	game.load.image('pirate', 'assets/pirate-red.png');
 	
 	
 }
@@ -21,6 +26,10 @@ var fishline;
 var score;
 var scoreText;
 
+// added
+var fish;
+var menu;
+var pirate;
 
 
 function create() {
@@ -88,26 +97,91 @@ function update() {
 	game.physics.arcade.collide(player, waves);
 	
 
+	// Added
+	game.physics.arcade.collide(pirate, waves);
+	if (cursors.up.isDown && player.body.touching.down)
+	{
+		player.body.velocity.y = -300;
+	}
+	game.physics.arcade.overlap(player, fish, collectFish, null, this);
+	game.physics.arcade.overlap(player, shark, endGame, null, this);
+	game.physics.arcade.overlap(player, pirate, endGame, null, this);
+
+}
+
+function render() {
+	
+	game.debug.geom(fishline,'black');
 
 }
 
 function updateHook() {
 	hook.body.velocity.y = 0;
 	if (cursors.down.isDown) {
-		hook.body.velocity.y += 100;
-	} else if (cursors.up.isDown) {
+		hook.body.velocity.y += 150;
+	} else {
 		if (! (hook.y < (player.y+player.height))){
-			hook.body.velocity.y -= 100;
+			hook.body.velocity.y -= 150;
 		} else {
 			hook.body.velocity.y = 0;
 		}
 	}
 }
 
-function render() {
-	
-	game.debug.geom(fishline);
-    game.debug.text("Time until event: " + game.time.events.duration.toFixed(0), 32, 32);
-    game.debug.text("Next tick: " + game.time.events.next.toFixed(0), 32, 64);
 
+// Added
+function createFish()
+{
+	try {
+		fish.kill();
+	} catch (err){
+		
+	}
+	
+	
+	fish = game.add.sprite(900, 500, 'fish');
+	game.physics.arcade.enable(fish);
+	fish.body.velocity.x = -150;
+	
+}
+
+function createPirate()
+{
+	pirate = game.add.sprite(900, 100, 'pirate');
+	game.physics.arcade.enable(pirate);
+	pirate.body.velocity.x = -200;
+	game.physics.arcade.collide(pirate, waves);
+	pirate.body.gravity.y = 400;
+}
+
+function collectFish() {
+	
+	//todo
+}
+
+function endGame() {
+	
+	game.paused = true;
+	var w = game.world.width;
+	var h = game.world.height;
+
+	// Then add the menu
+	var menu = game.add.sprite(w/2, h/2, 'menu');
+	menu.anchor.setTo(0.5, 0.5);
+	
+	var endMessage = "GAME OVER";
+	var endText = game.add.text(game.world.centerX, game.world.centerY, endMessage,{fill: '#fff' });
+	endText.anchor.setTo(0.5,0.5);
+
+	// And a label to illustrate which menu item was chosen. (This is not necessary)
+	var choiseLabel = game.add.text(game.world.centerX, game.world.centerY + menu.height/2+30, 'Click here to restart', {fill: '#000000' });
+	choiseLabel.anchor.setTo(0.5, 0.5);
+
+	
+	// Add a input listener that can help us return from being paused
+    game.input.onDown.add(restart, self);
+	function restart(event){
+		location.reload();
+	}
+	
 }
