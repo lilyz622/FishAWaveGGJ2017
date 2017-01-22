@@ -200,7 +200,7 @@ function createFish()
 function createPirate()
 {
 	waterSound.stop();
-	pirate = game.add.sprite(1000, 0, 'pirate');
+	pirate = game.add.sprite(800, 0, 'pirate');
 	game.physics.arcade.enable(pirate);
 	pirate.body.velocity.x = -200;
 	game.physics.arcade.collide(pirate, waves);
