@@ -11,7 +11,7 @@ function preload(){
 	game.load.image('fish', 'assets/fish.png');
 	game.load.image('shark', 'assets/shark.png');
 	game.load.image('menu', 'assets/blackbox.png', 300, 180);
-	game.load.image('ammoFish', 'assets/ammoFish.png');
+	//game.load.image('ammoFish', 'assets/ammoFish.png');
  
  
 	//add sound
@@ -31,7 +31,7 @@ var pirate;
 var shark;
 var fishText;
 var NORMAL_SPEED = 5;
-var ammoFish;
+//var ammoFish;
 //var fishes;
 
 //add sound
@@ -126,7 +126,7 @@ function update() {
 	//game.physics.arcade.overlap(hook, fish, collectFish, null, this);
 	game.physics.arcade.overlap(player, shark, endGame, null, this);
 	game.physics.arcade.overlap(player, pirate, endGame, null, this);
-	game.physics.arcade.overlap(ammoFish, pirate, killPirate, null, this);
+	//game.physics.arcade.overlap(ammoFish, pirate, killPirate, null, this);
 	game.physics.arcade.overlap(fishline, shark, endGame, null, this);
 	//game.physics.arcade.overlap(hook, shark, endGame, null, this);
 		
@@ -176,13 +176,13 @@ function killPirate()
 	
 }
 
-function fireFish()
-{
-	ammoFish = game.add.sprite(player.x + 148, player.y + 71, 'ammoFish');
-	game.physics.arcade.enable(ammoFish);
-	ammoFish.velocity.x = 400;
-	game.physics.arcade.collide(ammoFish, pirate);
-}
+//function fireFish()
+//{
+//	ammoFish = game.add.sprite(player.x + 148, player.y + 71, 'ammoFish');
+//	game.physics.arcade.enable(ammoFish);
+//	ammoFish.velocity.x = 400;
+//	game.physics.arcade.collide(ammoFish, pirate);
+//}
 
 function createShark()
 {
