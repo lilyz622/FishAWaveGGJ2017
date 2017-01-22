@@ -1,4 +1,4 @@
-var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update,render: render });
 
 
 function preload(){
@@ -105,7 +105,6 @@ function updateHook() {
 }
 
 function render() {
-	game.context.strokeStyle = 'rgb(0,255,255)';
 	
 	game.debug.geom(line);
     game.debug.text("Time until event: " + game.time.events.duration.toFixed(0), 32, 32);
