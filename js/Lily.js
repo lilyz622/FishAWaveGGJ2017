@@ -32,7 +32,7 @@ var hook;
 var fishline;
 var score = 0;
 var scoreText;
-
+var timer;
 // added
 var fish;
 var menu;
