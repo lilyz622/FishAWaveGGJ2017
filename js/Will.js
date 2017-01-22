@@ -18,7 +18,7 @@ function preload(){
 	//game.load.audio('music', 'assets/sound/Waves_Crashing_on_Rock_Beach.mp3'); 
 	
 }
-
+var hook;
 var waves;
 var player;
 var cursors;
