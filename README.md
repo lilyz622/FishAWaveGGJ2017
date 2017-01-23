@@ -10,3 +10,5 @@ Rules:
 - DOWN to deploy fishing line and hook
 - RIGHT to shoot fish and destroy pirate ships
 
+![screenshot](https://cloud.githubusercontent.com/assets/16328188/22212877/40deebe8-e160-11e6-8fd2-d829e695d814.png)
+
