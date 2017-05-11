@@ -277,7 +277,7 @@ function createAdditionGame(numNeededToPass){
 		var num2 = Math.floor(Math.random() * 80)+20;
 		var mathQuestion = prompt("To play the game, answer "+(numNeededToPass-numAnsweredCorrectly)+" more question(s) correctly."
 			+"\nWhat is "+num1+"+"+num2+":");
-		if (mathQuestion == numNeededToPass){
+		if (mathQuestion == num1+num2){
 			numAnsweredCorrectly += 1;
 		}
 	}
