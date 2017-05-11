@@ -275,7 +275,7 @@ function createAdditionGame(numNeededToPass){
 	while (numAnsweredCorrectly < numNeededToPass){
 		var num1 = Math.floor(Math.random() * 80)+20;
 		var num2 = Math.floor(Math.random() * 80)+20;
-		var mathQuestion = prompt("To play the game, answer the following question correctly:"
+		var mathQuestion = prompt("To play the game, answer "+(numNeededToPass-numAnsweredCorrectly)+" more question(s) correctly."
 			+"\nWhat is "+num1+"+"+num2+":");
 		if (mathQuestion == numNeededToPass){
 			numAnsweredCorrectly += 1;
