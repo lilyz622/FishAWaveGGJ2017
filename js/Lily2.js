@@ -278,7 +278,7 @@ function createAdditionGame(){
 	var num1 = Math.floor(Math.random() * 80)+20;
 	var num2 = Math.floor(Math.random() * 80)+20;
 	var mathQuestion = prompt("To restart the game, answer the following question correctly:"
-			+"\nWhat is "+num1+"+"+num2":");
+			+"\nWhat is "+num1+"+"+num2+":");
 	return (mathQuestion == num1+num2);
 }
 
