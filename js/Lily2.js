@@ -56,6 +56,9 @@ function create() {
 	waterSound.play();
 	waterSound.onStop.add(playbackDramatic);
 	
+	// addition game
+	var numNeededToPass = 3;
+	createAdditionGame(3);
 	
     //  We're going to be using physics, so enable the Arcade Physics system
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -259,12 +262,6 @@ function endGame(shark, line, hook) {
 	// And a label to illustrate which menu item was chosen. (This is not necessary)
 	var choiseLabel = game.add.text(game.world.centerX, game.world.centerY + menu.height/2+30, 'Click here to restart', {fill: '#000000' });
 	choiseLabel.anchor.setTo(0.5, 0.5);
-
-	// addition game
-	var passedQuiz = false;
-	while (!passedQuiz){
-		passedQuiz = createAdditionGame();
-	}
 	
 	// Add a input listener that can help us return from being paused
 	game.input.onDown.add(restart, self);
@@ -273,12 +270,17 @@ function endGame(shark, line, hook) {
 	}
 }
 
-function createAdditionGame(){
-	var num1 = Math.floor(Math.random() * 80)+20;
-	var num2 = Math.floor(Math.random() * 80)+20;
-	var mathQuestion = prompt("To restart the game, answer the following question correctly:"
+function createAdditionGame(numNeededToPass){
+	var numAnsweredCorrectly = 0;
+	while (numAnsweredCorrectly < numNeededToPass){
+		var num1 = Math.floor(Math.random() * 80)+20;
+		var num2 = Math.floor(Math.random() * 80)+20;
+		var mathQuestion = prompt("To play the game, answer the following question correctly:"
 			+"\nWhat is "+num1+"+"+num2+":");
-	return (mathQuestion == num1+num2);
+		if (mathQuestion == numNeededToPass){
+			numAnsweredCorrectly += 1;
+		}
+	}
 }
 
 function playbackDramatic() {
