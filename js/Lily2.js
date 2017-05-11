@@ -264,7 +264,6 @@ function endGame(shark, line, hook) {
 	var passedQuiz = false;
 	while (!passedQuiz){
 		passedQuiz = createAdditionGame();
-		passedQuiz = createAdditionGame();
 	}
 	
 	// Add a input listener that can help us return from being paused
